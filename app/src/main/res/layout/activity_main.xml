@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?><!--主界面-->
+<!--drawerlayout 实现滑动菜单-->
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
+
+    <!-- 此布局允许放入两个控件
+    第一个控件 主屏幕中显示的内容-->
+    <com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <!--为了实现toolbar有收缩和扩展的效果(然并卵无用，drive me crazy!!)-->
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <!--toolbar->代替原来的导航栏-->
+            <androidx.appcompat.widget.Toolbar xmlns:app="http //schemas android com/apk/res-auto"
+                android:id="@+id/tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/skyBlue"
+                android:fitsSystemWindows="true"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:navigationIcon="@mipmap/nav_icon_small"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"></androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!--导航栏下的内容部分-->
+
+        <!--note列表-->
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:dividerHeight="5dp"
+            android:divider="#00000000"
+            android:fadingEdge="none"
+            android:fastScrollEnabled="true"
+            android:fitsSystemWindows="true"
+            android:listSelector="@color/colorPrimary"></ListView>
+
+        <!--新建note按钮（使用图片做button,悬浮按钮）-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/skyBlue"
+            android:src="@drawable/notebook"
+            app:borderWidth="0dp"
+            app:rippleColor="@color/LightSlateBlue"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+    </com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout>
+
+    <!--第二个控件 滑动菜单中显示的内容（任意控件）-->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu"></com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

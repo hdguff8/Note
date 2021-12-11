@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="grayish">#ededed</color>
+    <color name="cut_line">#d2d2d2</color>
+    <color name="light_gray">#C0C0C0</color>
+    <color name="white_gray">#e2e1e4</color>
+    <color name="m_purple">#ccccd6</color>
+    <color name="c1">#61649f</color>
+    <color name="c3">#525288</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="reveal_color">#FFFFFF</color>
+    <color name="bottom_color">#3086E4</color>
+    <color name="bottom_bg">#40BAF8</color>
+    <color name="frame_search">#ADAEAD</color>
+    <color name="background_white">#FFFFFF</color>
+    <color name="green">#BADB66</color>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="c2">#a7a8bd</color>
+    <color name="skyBlue">#87CEFA</color>
+    <color name="LightCyan">#E0FFFF</color>
+    <color name="LightSkyBlue">#87CEFA</color>
+    <color name="LightSteelBlue">#B0C4DE</color>
+    <color name="LightSlateBlue">#8470FF</color>
+</resources>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--展示note界面-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_gray"
+    tools:context=".ShowNoteContentActivity">
+
+    <!--toolbar-->
+    <androidx.appcompat.widget.Toolbar
+        xmlns:app="http //schemas android com/apk/res-auto"
+        android:id="@+id/tool_bar_setting"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/skyBlue"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.Toolbar>
+
+    <!--toolbar下面的控件-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tool_bar_setting"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!--note标题-->
+        <EditText
+            android:id="@+id/show_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="30dp"
+            android:background="@null"
+            android:hint="@string/edit_title"
+            android:lines="1"
+            android:textColorHint="@color/light_gray"
+            android:textSize="30sp"></EditText>
+
+        <!--note分组-->
+        <TextView
+            android:id="@+id/note_group"
+            android:layout_width="wrap_content"
+            android:layout_height="20sp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:text="@string/note_group"
+            android:textColor="@color/c3"
+            android:textSize="15sp"
+            android:textStyle="bold"></TextView>
+
+        <!--note内容-->
+        <EditText
+            android:id="@+id/show_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@null"
+            android:hint="@string/edit_content"
+            android:textSize="15sp"></EditText>
+    </LinearLayout>
+
+    <!--当前note内容的字数-->
+    <TextView
+        android:id="@+id/textLength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/text_length"></TextView>
+</RelativeLayout>

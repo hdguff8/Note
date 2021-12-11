@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">阿俊速记</string>
+    <string name="edit_title">标题</string>
+    <string name="edit_content">阿俊正等待您的速记内容~</string>
+    <string name="edit">编辑</string>
+    <string name="note_title">速记标题</string>
+    <string name="note_time">速记时间</string>
+    <string name="note_content">速记内容</string>
+    <string name="max_time">3</string>
+    <string name="text_count">100</string>
+    <string name="text_length">字数</string>
+    <string name="text_length_list">字数</string>
+    <string name="add">＋</string>
+    <string name="toast">我是 Toast 啦</string>
+    <string name="add_note_success">便签添加成功❤</string>
+    <string name="title_content_null">标题或内容不能为空</string>
+    <string name="nothing_to_del">没有可删除的啦</string>
+    <string name="del_success">删除成功</string>
+    <string name="help">帮助</string>
+    <string name="output">导出</string>
+    <string name="input">导入</string>
+    <string name="clicked">你点击了:</string>
+    <string name="usage">软件使用说明</string>
+    <string name="shit">你小子自己摸索叭</string>
+    <string name="rewrite_note">修改note内容</string>
+    <string name="note_group">显示分组</string>
+    <string name="current_note_length">0</string>
+
+    <string name="love">love</string>
+    <string name="save">save</string>
+    <string name="rewrite">重写当前便签</string>
+    <string name="home_title">首页</string>
+    <string name="menu_title">this is menu</string>
+    <string name="setting_chat">chat</string>
+    <string name="note_group_nav">便签分组</string>
+    <string name="note_collect_nav">收藏便签</string>
+    <string name="note_setting_nav">设置</string>
+    <string name="user_name">大俊仔</string>
+    <string name="user_mail">15305194089@qq.com</string>
+    <string name="edit_note_toolbar">添加便签</string>
+    <string name="toll_bar_collect">收藏</string>
+</resources>

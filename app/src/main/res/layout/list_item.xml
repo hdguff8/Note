@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--每个list里面的item的样式，在主界面展示-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@color/LightSteelBlue">
+
+        <!--note标题-->
+        <TextView
+            android:id="@+id/note_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxEms="15"
+            android:text="@string/note_title"
+            android:textColor="@color/black"
+            android:textSize="15sp"></TextView>
+
+        <!--note记录时间-->
+        <TextView
+            android:id="@+id/note_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/note_time"
+            android:textColor="@color/black"
+            android:textSize="15sp"></TextView>
+
+        <!--note内容的字数-->
+        <TextView
+            android:id="@+id/text_length"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/text_length_list"></TextView>
+
+        <!--note内容（缩略展示）-->
+        <TextView
+            android:id="@+id/note_content"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_below="@id/note_title"
+            android:ellipsize="end"
+            android:maxWidth="5sp"
+            android:maxLines="1"
+            android:paddingStart="5dp"
+            android:paddingLeft="10dp"
+            android:paddingEnd="50dp"
+            android:paddingRight="50dp"
+            android:text="@string/note_content"></TextView>
+        <!--maxLength和ellipsize不能兼容，省略号会失效-->
+
+    </RelativeLayout>
+
+</RelativeLayout>

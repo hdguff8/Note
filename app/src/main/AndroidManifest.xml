@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.note">
+
+    <!--    权限申请-->
+    <uses-permission android:name="com.android.peter.provider.READ_PERMISSION" />
+    <uses-permission android:name="com.android.peter.provider.WRITE_PERMISSION" />
+
+    <!--外部存储的权限声明-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/notebook"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/notebook"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!--登记一下类-->
+        <activity android:name=".ShowNoteContentActivity"></activity>
+        <activity android:name=".EditActivity"></activity>
+        <activity android:name=".RewriteNote" />
+
+        <!--启动页-->
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+    </application>
+
+
+</manifest>

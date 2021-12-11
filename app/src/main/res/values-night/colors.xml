@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--黑夜模式的颜色-->
+<resources>
+    <color name="skyBlue">#131124</color>
+    <color name="LightCyan">#101f30</color>
+    <color name="LightSkyBlue">#35333c</color>
+    <color name="LightSteelBlue">#35333c</color>
+    <color name="LightSlateBlue">#8470FF</color>
+    <color name="white">#000</color>
+    <color name="black">#fff</color>
+    <color name="white_gray">#35333c</color>
+    <color name="light_gray">#fff</color>
+    <color name="c3">#e0c8d1</color>
+</resources>

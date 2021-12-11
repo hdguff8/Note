@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<!--group标签表示以下item为一组-->
+    <group
+        android:checkableBehavior="single"
+        >
+<!--android:checkableBehavior="single" 设置组中item只能单选-->
+        <item
+            android:id="@+id/note_group"
+            android:icon="@drawable/group"
+            android:title="@string/note_group_nav" />
+        <item
+            android:id="@+id/note_collect"
+            android:icon="@drawable/want_collect"
+            android:title="@string/note_collect_nav"
+            />
+        <item
+            android:id="@+id/note_setting"
+            android:icon="@drawable/setting"
+            android:title="@string/note_setting_nav"
+            />
+    </group>
+</menu>

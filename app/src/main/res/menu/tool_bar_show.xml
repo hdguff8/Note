@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <item
+        android:checkable="true"
+        android:id="@+id/collect"
+        android:icon="@drawable/want_collect"
+        android:title="@string/toll_bar_collect"
+        app:showAsAction="always"
+        tools:ignore="MenuTitle"></item>
+
+    <item
+        android:id="@+id/rewrite"
+        android:icon="@drawable/rew"
+        android:title="@string/rewrite"
+        app:showAsAction="always"
+        tools:ignore="MenuTitle"></item>
+
+<!--showAsAction的参数：
+    always 永远显示在toolbar中
+    ifRoom 屏幕空间足够就显示在toolbar中
+    never 永远显示在菜单中   -->
+</menu>

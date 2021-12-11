@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--添加note界面-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".EditActivity">
+
+<!--toolbar-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tool_bar_setting"
+        xmlns:app="http //schemas android com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/skyBlue"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        tools:ignore="MissingConstraints">
+
+    </androidx.appcompat.widget.Toolbar>
+
+<!--toolbar下面的内容-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tool_bar_setting"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!--note标题-->
+        <com.example.note.MsDelEditText
+            android:id="@+id/edit_title"
+            android:layout_width="match_parent"
+            android:layout_height="35sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="30dp"
+            android:background="@null"
+            android:hint="@string/edit_title"
+            android:lines="1"
+            android:maxWidth="10sp"
+            android:maxHeight="35sp"
+            android:maxEms="14"
+            android:maxLength="14"
+            android:textColorHint="@color/light_gray"
+            android:textSize="20sp" />
+
+        <!--note内容-->
+        <EditText
+            android:id="@+id/edit_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@null"
+            android:hint="@string/edit_content"
+            android:maxLength="800"
+            android:textSize="15sp"></EditText>
+
+        <!--
+        android:maxWidth 控制View的长度来控制文本长度
+        android:maxLength 控制字符的个数来控制文本长度
+        android:maxEms 控制字符的长度来控制文本长度
+        -->
+    </LinearLayout>
+
+<!--当前note内容的字数-->
+    <TextView
+        android:id="@+id/current_content_length"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/current_note_length"></TextView>
+
+
+</RelativeLayout>
