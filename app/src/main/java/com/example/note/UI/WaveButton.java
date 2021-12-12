@@ -1,4 +1,4 @@
-package com.example.note;
+package com.example.note.UI;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -7,6 +7,8 @@ import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
+
+import com.example.note.R;
 
 public class WaveButton extends androidx.appcompat.widget.AppCompatButton {
 

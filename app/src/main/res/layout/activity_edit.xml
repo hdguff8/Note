@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".EditActivity">
+    tools:context=".Activities.EditActivity">
 
 <!--toolbar-->
     <androidx.appcompat.widget.Toolbar
@@ -33,7 +33,7 @@
         android:orientation="vertical">
 
         <!--note标题-->
-        <com.example.note.MsDelEditText
+        <com.example.note.UI.MsDelEditText
             android:id="@+id/edit_title"
             android:layout_width="match_parent"
             android:layout_height="35sp"

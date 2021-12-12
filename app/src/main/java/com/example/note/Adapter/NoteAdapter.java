@@ -1,4 +1,4 @@
-package com.example.note;
+package com.example.note.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.example.note.Model.Note;
+import com.example.note.R;
 
 import java.util.List;
 

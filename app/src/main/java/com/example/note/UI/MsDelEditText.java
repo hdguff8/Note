@@ -1,4 +1,4 @@
-package com.example.note;
+package com.example.note.UI;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.Toast;
+
+import com.example.note.R;
 
 public class MsDelEditText extends androidx.appcompat.widget.AppCompatEditText {
 

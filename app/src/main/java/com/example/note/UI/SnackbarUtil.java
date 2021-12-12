@@ -1,4 +1,4 @@
-package com.example.note;
+package com.example.note.UI;
 
 import android.graphics.Color;
 import android.view.Gravity;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.note.R;
 import com.google.android.material.snackbar.Snackbar;
 
 public class SnackbarUtil {

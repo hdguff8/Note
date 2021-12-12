@@ -1,11 +1,9 @@
-package com.example.note;
+package com.example.note.Activities;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +21,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.example.note.Database.NoteService;
+import com.example.note.Model.Note;
+import com.example.note.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -51,7 +52,7 @@ public class EditActivity extends AppCompatActivity {
 
         final String[] items = {"默认分组", "学习", "工作"};
 
-        AlertDialog.Builder singleChoiceDialog = new AlertDialog.Builder(EditActivity.this,R.style.oval_dialog);
+        AlertDialog.Builder singleChoiceDialog = new AlertDialog.Builder(EditActivity.this, R.style.oval_dialog);
 
         singleChoiceDialog.setTitle("请选择便签分组：");
 

@@ -22,12 +22,12 @@
         android:theme="@style/AppTheme">
 
         <!--登记一下类-->
-        <activity android:name=".ShowNoteContentActivity"></activity>
-        <activity android:name=".EditActivity"></activity>
+        <activity android:name=".Activities.ShowNoteContentActivity"></activity>
+        <activity android:name=".Activities.EditActivity"></activity>
         <activity android:name=".RewriteNote" />
 
         <!--启动页-->
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

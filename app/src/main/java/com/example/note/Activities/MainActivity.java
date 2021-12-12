@@ -1,11 +1,10 @@
-package com.example.note;
+package com.example.note.Activities;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,6 +26,11 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 
+import com.example.note.Adapter.NoteAdapter;
+import com.example.note.Database.NoteService;
+import com.example.note.Model.Note;
+import com.example.note.R;
+import com.example.note.Util.LogUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 

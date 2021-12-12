@@ -1,9 +1,11 @@
-package com.example.note;
+package com.example.note.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.example.note.Model.Note;
 
 import java.util.ArrayList;
 import java.util.Calendar;
