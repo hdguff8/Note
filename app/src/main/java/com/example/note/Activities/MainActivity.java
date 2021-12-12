@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     NoteAdapter mAdapter;
 
     //操作数据库
-    NoteService service;
+    NoteService db;
 
     ImageView icon;
     TextView message;
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         list_view = findViewById(R.id.list_view);
 
         //更新列表
-        service = new NoteService(this);
+        db = new NoteService(this);
 
         upListData();
 
@@ -156,8 +156,7 @@ public class MainActivity extends AppCompatActivity {
     private void upListData() {
 
         //给适配器绑上数据
-        ArrayList<Note> data = service.getAllNote();
-
+        ArrayList<Note> data = db.getAllNote();
         mAdapter = new NoteAdapter(MainActivity.this, data);
 
         //给listView绑定适配器
@@ -165,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
         //跟新listView
         mAdapter.notifyDataSetChanged();
-        list_view.setSelection(service.getAllNote().size() - 1);
+        list_view.setSelection(db.getAllNote().size() - 1);
     }
 
     private void listener() {
@@ -176,16 +175,17 @@ public class MainActivity extends AppCompatActivity {
             //当用户点击了任意菜单，回调到onNavigationItemSelected方法中
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
-
                 //显示 当前点击了哪个item
                 switch (item.getItemId()) {
                     case R.id.note_group:
                         // TODO: 2021/12/9 这里需要一个询问想查看的分组的dialog
                         Toast.makeText(getApplication(), "你点击了note_group", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this,GroupManager.class));
                         break;
                     case R.id.note_collect:
                         // TODO: 2021/12/9 这里需要做一个收藏功能
                         Toast.makeText(getApplication(), "你点击了note_collect", Toast.LENGTH_SHORT).show();
+
                         break;
                     case R.id.note_setting:
                         // TODO: 2021/12/9 这里需要做一个收藏功能
@@ -195,7 +195,6 @@ public class MainActivity extends AppCompatActivity {
 
                 //关闭 滑动菜单
                 drawerLayout.closeDrawers();
-
                 return true;
             }
         });
@@ -217,54 +216,42 @@ public class MainActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
                 //测试语句 检查删除完还有几条note
-                LogUtil.d("MainActivity","onItemLongClick: "+service.getAllNote().size());
+                LogUtil.d("MainActivity","onItemLongClick: "+ db.getAllNote().size());
 
-                ArrayList<Note> data = service.getAllNote();
+                ArrayList<Note> data = db.getAllNote();
                 //如果不为空则可进行删除
                 if (!data.isEmpty()) {
-
-                    service.deleteNote(data.get(position));
+                    db.deleteNote(data.get(position));
                     //给listView绑定适配器
                     list_view.setAdapter(mAdapter);
                     //跟新listView
                     mAdapter.notifyDataSetChanged();
-                    list_view.setSelection(service.getAllNote().size() - 1);
+                    list_view.setSelection(db.getAllNote().size() - 1);
 
                     //显示删除成功
                     showDelSucceed();
-
                     //更新列表
                     upListData();
                 } else {
-
                     //显示没有可以删除的东西信息
                     showNoneDel();
                 }
                 return true;
             }
         });
-
         //点击显示细节内容
         list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, ShowNoteContentActivity.class);
-                intent.putExtra("index", position);
+                Intent intent = new Intent(MainActivity.this, EditActivity.class);
+                intent.putExtra("noteId", db.getAllNote().get(position).getId());
                 startActivity(intent);
-                ArrayList<Note> data = service.getAllNote();
-//        测试要用的数据
-//        String currentTitle = data.get(position).getNoteTitle();
-//        String currentContent = data.get(position).getNoteContent();
-//        int currentNoteGroup = data.get(position).getGroup();
-//        int currentNoteLength = data.get(position).getNoteLength();
-                int currentId = data.get(position).getId();
-
-                Toast.makeText(getApplicationContext(), "id :" + currentId, LENGTH_SHORT).show();
-//      更详细的测试语句
-//      Toast.makeText(MainActivity.this, "id :"+currentId+",标题： " + currentTitle + ",内容： " + currentContent + ",分组： " + currentNoteGroup+",字数： "+currentNoteLength, Toast.LENGTH_SHORT).show();
-
             }
         });
+    }
+
+    public void updateListView(){
+
     }
 
     //显示没有可以删除的东西

@@ -22,6 +22,7 @@ public class NoteDatabaseHelper extends SQLiteOpenHelper {
         //生成一张数据表
         //execSQL -> 执行单个SQL语句，该SQL语句不是SELECT语句或任何其他返回数据的SQL语句。
         db.execSQL("create table " + table_name + "(id integer primary key ,title text,content text,time text,note_group integer,note_length,integer)");
+        db.execSQL("create table groups (id integer primary key ,name text)");
     }
 
     @Override

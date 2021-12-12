@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.note.Model.Note;
+import com.example.note.Util.DateHelper;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -46,19 +47,15 @@ public class NoteService {
         db.insert(NoteDatabaseHelper.table_name,null,cv);
     }
 
-    //暂未使用
-    public void updateNote(Note newNote,int num){
+    //更新数据，因为修改内容并不会修改日期，所以日期可以视作唯一字段
+    public void updateNote(Note newNote){
         ContentValues values = new ContentValues();
         values.put("title", newNote.getNoteTitle());
         values.put("content", newNote.getNoteContent());
         values.put("time",newNote.getNoteTime() );
         values.put("note_group",newNote.getGroup());
         values.put("note_length", newNote.getNoteLength());
-        db.update(NoteDatabaseHelper.table_name, values, "title = ?", new String[]{newNote.getNoteTitle()});
-        db.update(NoteDatabaseHelper.table_name, values, "content = ?", new String[]{newNote.getNoteContent()});
         db.update(NoteDatabaseHelper.table_name, values, "time = ?", new String[]{newNote.getNoteTime()});
-        db.update(NoteDatabaseHelper.table_name, values, "note_group = ?", new String[]{String.valueOf(newNote.getGroup())});
-        db.update(NoteDatabaseHelper.table_name, values, "note_length = ?", new String[]{String.valueOf(newNote.getNoteLength())});
     }
 
     //根据Note信息更新id
@@ -69,25 +66,11 @@ public class NoteService {
 
     public void initList(){//初始化第一条note
         if (getAllNote().size()==0){
-            //设置时间
-            Calendar calendar = Calendar.getInstance();
-            //月  月份从0开始 —> +1
-            int month = calendar.get(Calendar.MONTH) + 1;
-            //日
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
-            //周(本月第几周)
-//            int week = calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH);
-            //小时
-            int hour = calendar.get(Calendar.HOUR_OF_DAY);
-            //分
-            int minute = calendar.get(Calendar.MINUTE);
-            //秒
-            int second = calendar.get(Calendar.SECOND);
             ContentValues cv = new ContentValues();
             //默认显示的一条note
             cv.put("title","我是阿俊");
             cv.put("content","今天也想帮你记录生活鸭");
-            cv.put("time",month+"月"+day+"日"+hour+"时:"+minute+"分:"+second+"秒");
+            cv.put("time", DateHelper.getInstance().getDataString());
             cv.put("note_group",0);//0为默认分组
             cv.put("note_length",11);//初始化的这条note的content字数为11
             db.insert(NoteDatabaseHelper.table_name,null,cv);
@@ -98,6 +81,14 @@ public class NoteService {
     public ArrayList<Note> getAllNote(){
         Cursor cursor = db.rawQuery("select * from "+NoteDatabaseHelper.table_name+"",null);
         return CursorToNotes(cursor);
+    }
+
+    public Note getNoteById(int id){
+        Cursor cursor = db.rawQuery("select * from "+NoteDatabaseHelper.table_name+" where id=?",new String[]{String.valueOf(id)});
+        if(cursor.getCount()>0)
+            return CursorToNotes(cursor).get(0);
+        else
+            return null;
     }
 
 //    暂时不用此方法(用于测试)

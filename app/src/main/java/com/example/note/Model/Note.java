@@ -1,5 +1,7 @@
 package com.example.note.Model;
 
+import com.example.note.Util.DateHelper;
+
 /*
  *   model类
  * */
@@ -24,6 +26,11 @@ public class Note {
     }
 
     public Note() {
+        this.noteTitle = "";
+        this.noteContent = "";
+        this.noteTime = DateHelper.getInstance().getDataString();
+        this.group = 1;
+        this.noteLength = 0;
     }
 
     public int getId() {
