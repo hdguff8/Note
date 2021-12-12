@@ -13,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,9 +29,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 
 import com.example.note.Adapter.NoteAdapter;
+import com.example.note.Database.GroupService;
 import com.example.note.Database.NoteService;
 import com.example.note.Model.Note;
 import com.example.note.R;
+import com.example.note.Util.DialogUtil;
 import com.example.note.Util.LogUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navView;
     private FloatingActionButton add_note;//底部的增加按钮
+    Spinner spinner;
 
 
     private ListView list_view;//note列表
@@ -53,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     //操作数据库
     NoteService db;
+    GroupService gdb;
 
     ImageView icon;
     TextView message;
@@ -121,9 +127,38 @@ public class MainActivity extends AppCompatActivity {
 
         //更新列表
         db = new NoteService(this);
+        gdb = new GroupService(this);
 
         upListData();
 
+        spinner = findViewById(R.id.spinner_groups_selector);
+        ArrayAdapter<String> allGroupsNameArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,gdb.getAllGroupName(true));
+        spinner.setAdapter(allGroupsNameArrayAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setListView();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+    }
+
+    private void setListView(){
+        ArrayList<Note> datas = new ArrayList<>();
+        if(spinner.getSelectedItemPosition()==0){
+            datas = db.getAllNote();
+        }else{
+            //获取所选组名称
+            String groupName = gdb.getAllGroupName(true).get(spinner.getSelectedItemPosition());
+            //设置显示内容为id为组名称对应的组id
+            datas = db.getNotesByGroupId(gdb.getGroupIdByName(groupName));
+        }
+        list_view.setAdapter(new NoteAdapter(this,datas));
     }
 
 
@@ -214,31 +249,25 @@ public class MainActivity extends AppCompatActivity {
         list_view.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-                //测试语句 检查删除完还有几条note
-                LogUtil.d("MainActivity","onItemLongClick: "+ db.getAllNote().size());
-
-                ArrayList<Note> data = db.getAllNote();
-                //如果不为空则可进行删除
-                if (!data.isEmpty()) {
-                    db.deleteNote(data.get(position));
-                    //给listView绑定适配器
-                    list_view.setAdapter(mAdapter);
-                    //跟新listView
-                    mAdapter.notifyDataSetChanged();
-                    list_view.setSelection(db.getAllNote().size() - 1);
-
-                    //显示删除成功
-                    showDelSucceed();
-                    //更新列表
-                    upListData();
-                } else {
-                    //显示没有可以删除的东西信息
-                    showNoneDel();
-                }
+                DialogUtil.tipAndDoSthDialog(MainActivity.this, "提示", "你确定删除这条速记吗？这将永久失去它！", R.drawable.icon_warning, new DialogUtil.sureToDoSthListener() {
+                    @Override
+                    public void doSth() {
+                        db.deleteNote(db.getAllNote().get(position));
+                        //给listView绑定适配器
+                        list_view.setAdapter(mAdapter);
+                        //跟新listView
+                        mAdapter.notifyDataSetChanged();
+                        list_view.setSelection(db.getAllNote().size() - 1);
+                        //显示删除成功
+                        showDelSucceed();
+                        //更新列表
+                        upListData();
+                    }
+                });
                 return true;
             }
         });
+
         //点击显示细节内容
         list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -23,7 +23,8 @@
             android:fitsSystemWindows="true">
 
             <!--toolbar->代替原来的导航栏-->
-            <androidx.appcompat.widget.Toolbar xmlns:app="http //schemas android com/apk/res-auto"
+
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tool_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -31,26 +32,57 @@
                 android:fitsSystemWindows="true"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
-                app:navigationIcon="@mipmap/nav_icon_small"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"></androidx.appcompat.widget.Toolbar>
+                app:navigationIcon="@drawable/navi"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
 
         <!--导航栏下的内容部分-->
 
-        <!--note列表-->
-        <ListView
-            android:id="@+id/list_view"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
             android:layout_marginTop="?attr/actionBarSize"
-            android:dividerHeight="5dp"
-            android:divider="#00000000"
-            android:fadingEdge="none"
-            android:fastScrollEnabled="true"
-            android:fitsSystemWindows="true"
-            android:listSelector="@color/colorPrimary"></ListView>
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="50dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/selector" />
+
+                <Spinner
+                    android:id="@+id/spinner_groups_selector"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2" />
+
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="-10dp"
+                android:divider="#00000000"
+                android:dividerHeight="5dp"
+                android:fadingEdge="none"
+                android:fastScrollEnabled="true"
+                android:fitsSystemWindows="true"
+                android:listSelector="@color/colorPrimary"></ListView>
+
+        </LinearLayout>
+
+        <!--note列表-->
 
         <!--新建note按钮（使用图片做button,悬浮按钮）-->
         <com.google.android.material.floatingactionbutton.FloatingActionButton

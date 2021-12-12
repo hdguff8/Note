@@ -64,6 +64,11 @@ public class NoteService {
                 new Object[]{note.getId(),note.getNoteTitle(),note.getNoteContent(),note.getNoteTime()});
     }
 
+    public ArrayList<Note> getNotesByGroupId(int id){
+        Cursor cursor = db.rawQuery("select * from note where note_group=?",new String[]{String.valueOf(id)});
+        return CursorToNotes(cursor);
+    }
+
     public void initList(){//初始化第一条note
         if (getAllNote().size()==0){
             ContentValues cv = new ContentValues();

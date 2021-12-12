@@ -41,7 +41,14 @@ public class NoteAdapter extends ArrayAdapter<Note> {
         TextView textLength=convertView.findViewById(R.id.text_length);
         noteTitle.setText(mData.get(position).getNoteTitle());
         noteTime.setText(mData.get(position).getNoteTime());
-        noteContent.setText("  "+mData.get(position).getNoteContent());
+        if (mData.get(position).getGroup() == 2){
+            StringBuffer sb = new StringBuffer();
+            for(int i=0;i<mData.get(position).getNoteContent().length();i++)
+                sb.append("*");
+            noteContent.setText(sb.toString());
+        }else {
+            noteContent.setText("  "+mData.get(position).getNoteContent());
+        }
         textLength.setText(" "+mData.get(position).getNoteLength());
 
         return  convertView;

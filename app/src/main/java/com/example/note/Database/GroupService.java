@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 
 import com.example.note.Model.Group;
+import com.example.note.Model.Note;
 
 import java.util.ArrayList;
 
@@ -52,6 +53,14 @@ public class GroupService {
 
     //删除
     public void deleteGroup(int id){
+        //将被删除组的所有速记分组改成默认分组
+        NoteService noteService = new NoteService(context);
+        ArrayList<Note> needUpdateNodes = noteService.getNotesByGroupId(id);
+        for (Note note:needUpdateNodes){
+            note.setGroup(1);
+            noteService.updateNote(note);
+        }
+
         db.delete("Groups","id=?",new String[]{String.valueOf(id)});
     }
 

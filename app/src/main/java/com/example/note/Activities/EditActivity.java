@@ -7,15 +7,18 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +32,7 @@ import com.example.note.Model.Note;
 import com.example.note.R;
 import com.example.note.UI.MsDelEditText;
 import com.example.note.Util.DateHelper;
+import com.example.note.Util.DialogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,30 +81,60 @@ public class EditActivity extends AppCompatActivity {
 
             case android.R.id.home:
                 //返回主页
-                Toast.makeText(this, "返回主页❤", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(EditActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                saveToNeedInsertNote();
+                Log.d(TAG, "比较needInsetNote:"+needInsertNote.toString()+"db:"+db.getNoteById(needInsertNote.getId()).toString());
+                Log.d(TAG, "isEqual"+needInsertNote.equals(db.getNoteById(needInsertNote.getId())));
+                if(needInsertNote.equals(db.getNoteById(needInsertNote.getId()))){
+                    Intent intent = new Intent(EditActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    DialogUtil.doSthAfterChoiceDialog(EditActivity.this, "提示", "你还没有保存更改的内容,要保留吗？", R.drawable.icon_warning, new DialogUtil.DoSthListener() {
+                        @Override
+                        public void PositiveDoSth() {
+                            //返回时确认保存
+                            saveNote();
+                            Intent intent = new Intent(EditActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
+                        @Override
+                        public void NegativeDoSth() {
+                            //返回时不保存数据
+                            Intent intent = new Intent(EditActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                }
+
                 break;
 
             case R.id.save:
                 Toast.makeText(this, "保存成功❤", Toast.LENGTH_SHORT).show();
-                needInsertNote.setNoteTitle(title.getText().toString());
-                needInsertNote.setNoteContent(editText_content.getText().toString());
-                needInsertNote.setNoteLength(needInsertNote.getNoteContent().length());
-                if(isNewNote){
-                    //保存新建的内容
-                    db.insertNote(needInsertNote);
-                }else {
-                    //更新内容
-                    db.updateNote(needInsertNote);
-                }
-
+                saveNote();
                 break;
 
         }
 
         return true;
+    }
+
+    private void saveToNeedInsertNote(){
+        needInsertNote.setNoteTitle(title.getText().toString());
+        needInsertNote.setNoteContent(editText_content.getText().toString());
+        needInsertNote.setNoteLength(needInsertNote.getNoteContent().length());
+    }
+    private void saveNote(){
+        saveToNeedInsertNote();
+        if(isNewNote){
+            //保存新建的内容
+            db.insertNote(needInsertNote);
+        }else {
+            //更新内容
+            db.updateNote(needInsertNote);
+        }
     }
 
     private void init() {
@@ -142,9 +176,8 @@ public class EditActivity extends AppCompatActivity {
         //设置数据
         int noteId = getIntent().getIntExtra("noteId",-1);
         if(noteId == -1){
-            isNewNote = true;
+
         }else{
-            isNewNote =false;
             needInsertNote = db.getNoteById(noteId);
             title.setText(needInsertNote.getNoteTitle());
             editText_content.setText(needInsertNote.getNoteContent());

@@ -2,6 +2,8 @@ package com.example.note.Model;
 
 import com.example.note.Util.DateHelper;
 
+import java.util.Objects;
+
 /*
  *   model类
  * */
@@ -83,10 +85,23 @@ public class Note {
         this.noteTime = noteTime;
     }
 
-    public String toString() {
-        //测试
-        return String.valueOf(getId());
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Note)) return false;
+        Note note = (Note) o;
+        return getNoteLength() == note.getNoteLength() && getGroup() == note.getGroup() && getId() == note.getId() && getNoteTitle().equals(note.getNoteTitle()) && getNoteContent().equals(note.getNoteContent()) && getNoteTime().equals(note.getNoteTime());
     }
 
-
+    @Override
+    public String toString() {
+        return "Note{" +
+                "noteTitle='" + noteTitle + '\'' +
+                ", noteContent='" + noteContent + '\'' +
+                ", noteTime='" + noteTime + '\'' +
+                ", noteLength=" + noteLength +
+                ", group=" + group +
+                ", id=" + id +
+                '}';
+    }
 }
